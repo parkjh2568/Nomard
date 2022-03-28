@@ -1,1 +1,1 @@
-alter("hi")
+alert("hi");
