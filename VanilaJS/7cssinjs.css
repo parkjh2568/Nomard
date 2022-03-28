@@ -1,0 +1,23 @@
+body {
+    background-color: lightgray;
+    color: gray;
+}
+
+h2 {
+    color : cornflowerblue;
+}
+
+/* active란 클래스 만들기 */
+.active {
+    color: tomato;
+    transition: color .5s ease-in-out; /*애니메이션*/
+}
+
+.sexy-font{
+    font-family: poketmonGoldKr;
+}
+
+@font-face {
+    font-family : poketmonGoldKr;
+    src: url('./poketmonGoldKr.ttf');
+}

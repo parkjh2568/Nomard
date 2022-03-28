@@ -1,37 +1,30 @@
 
-const parent = document.querySelector("div.hello");
-const title = document.querySelector("div.hello h1")
-console.dir(parent);
-console.dir(title);
+const h1 = document.querySelector("div.hello h1")
+console.dir(h1);
+const h2 = document.querySelector("div.hello h2")
+console.dir(h2);
 
-//developer.mozilla.org/en-US/docs/Web/API/Window
 
-//윈도우 이벤트
-function handleWindowResize(){
-    document.body.style.backgroundColor = "tomato";
+//인라인코드로 강제로 바꾸기
+function handleMouseClick() {
+    const currentColor = h1.style.color;
+    let newColor;
+    if (currentColor === "blue")
+        newColor = "tomato"
+    else
+        newColor = "blue"
+    h1.style.color = newColor
 }
-window.addEventListener("resize", handleWindowResize)
+h1.addEventListener("click", handleMouseClick)
 
-//클립보드 이벤트
-function handleWindowCopy(){
-    document.body.style.backgroundColor = "red";
-    alert("You Copier!")
-}
-window.addEventListener("copy", handleWindowCopy)
 
-function handleWindowPaste(){
-    document.body.style.backgroundColor = "blue";
-    alert("pasted somthing")
-}
-window.addEventListener("paste", handleWindowPaste)
 
-//wifi event
-function handleWindowOffLine(){
-    alert("No Wifi")
+//css이용하기 -> 클래스 이름 덮어쓰기
+function handleMouseClick2() {
+    const className = "active"
+    if (h2.className === className)
+        h2.className = ""
+    else
+        h2.className = className
 }
-window.addEventListener("offline", handleWindowOffLine)
-
-function handleWindowOnLine(){
-    alert("Yes Wifi")
-}
-window.addEventListener("online", handleWindowOnLine)
+h2.addEventListener("click", handleMouseClick2)
