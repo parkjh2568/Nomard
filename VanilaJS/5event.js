@@ -38,3 +38,6 @@ title.addEventListener("mouseleave", function(){
     title.innerHTML = "Mouse leave"
     title.style.color = "red"
 })
+
+//event 삭제 << 이벤트 함수를 미리 만들고 박아야하는이유
+title.removeEventListener("click", eventhandle)
