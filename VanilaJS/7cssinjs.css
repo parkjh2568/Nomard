@@ -7,11 +7,32 @@ h2 {
     color : cornflowerblue;
 }
 
+h3 {
+    color :hotpink;
+    transition: color .5s ease-in-out; /*애니메이션*/
+}
+
+h4 {
+    color :yellow;
+    transition: color .5s ease-in-out; /*애니메이션*/
+}
+
 /* active란 클래스 만들기 */
 .active {
     color: tomato;
     transition: color .5s ease-in-out; /*애니메이션*/
 }
+
+.listactive {
+    color:lightgreen;
+    transition: color .5s ease-in-out; /*애니메이션*/
+}
+
+.toggleactive {
+    color:darkorchid;
+    transition: color .5s ease-in-out; /*애니메이션*/
+}
+
 
 .sexy-font{
     font-family: poketmonGoldKr;
