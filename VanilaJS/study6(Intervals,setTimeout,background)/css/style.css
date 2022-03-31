@@ -1,0 +1,40 @@
+body{
+    /* background-color: #CFFFE5; */
+    background-color: #beffdf;
+    font-family: poketmonGoldKr;
+    color:white;
+    text-shadow: 4px 4px 4px #4ebb9b;
+    font-size:200%
+}
+
+div{
+    font-family: SilverFont;
+    color:rgb(255, 255, 255);
+    font-size:150%;
+    opacity: 0.8;
+    
+}
+
+.displayNone{
+    display:none;
+}
+
+@font-face {
+    font-family : poketmonGoldKr;
+    src: url('./poketmonGoldKr.ttf');
+}
+
+@font-face {
+    font-family: SilverFont;
+    src: url('./Silver.ttf');
+}
+
+@font-face {
+    font-family: pixelroborobo;
+    src: url('./pixelroborobo.otf');
+}
+
+@font-face {
+    font-family: DungGeunMo;
+    src: url('./DungGeunMo.ttf');
+}

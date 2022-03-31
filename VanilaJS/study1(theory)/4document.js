@@ -32,5 +32,6 @@ console.dir(query)
 
 console.log("|||||||||||||||||||||||||||queryall = .hello h1||||||||||||||||||||||||||||")
 const queryall = document.querySelectorAll(".hello h1") //css쿼리형태로 검색 이경우 hello클래스의 자식중 h1가지는놈을 가져온다는뜻 단하나만 가져옴 가장 처음찾아지는 단하나만 리턴
+//띄어쓰기는 하위(차일드)
 console.log(queryall)
 console.dir(queryall)
