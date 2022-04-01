@@ -7,6 +7,10 @@ body{
     font-size:200%
 }
 
+h1{
+    font-family: pixelroborobo;
+}
+
 div{
     font-family: SilverFont;
     color:rgb(255, 255, 255);
@@ -17,6 +21,14 @@ div{
 
 .displayNone{
     display:none;
+}
+
+.SilverFont{
+    font-family: SilverFont;
+}
+
+.DungGeunMoFont{
+    font-family:DungGeunMo;
 }
 
 @font-face {
