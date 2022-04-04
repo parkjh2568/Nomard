@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@16.7.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js"></script>
+<script>
+    const root = document.getElementById("root")
+    const span = React.createElement("h3", {
+        id:"sexy-span", 
+        style:{color:"red"},
+        onMouseEnter:()=>{console.log("Mouse Enter")}
+    }, 
+    `Hello! I'm Span`)
+    const button = React.createElement("button", {
+        onClick: ()=>{console.log("Muyaho~")}
+    }, 
+    "Click me")
+    const div = React.createElement("div",null,[span, button])
+    ReactDOM.render([span, button], root)
+</script>
+</html>

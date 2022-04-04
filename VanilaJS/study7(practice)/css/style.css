@@ -1,7 +1,7 @@
 body{
     /* background-color: #CFFFE5; */
     background-color: #beffdf;
-    font-family: poketmonGoldKr;
+    font-family: DungGeunMo;
     color:white;
     text-shadow: 4px 4px 4px #4ebb9b;
     font-size:200%
@@ -28,7 +28,7 @@ div{
 }
 
 .DungGeunMoFont{
-    font-family:DungGeunMo;
+    font-family:poketmonGoldKr;
 }
 
 @font-face {

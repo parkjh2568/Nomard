@@ -14,11 +14,10 @@ function setLocalStorage(){
 
 function deleteToDo(event){
     const parent = event.target.parentNode;
-    const id = parent.id;
+    const id = parseInt(parent.id);
     toDos = toDos.filter((element)=>{
         return element.id !== id
     })
-    console.log(toDos);
     setLocalStorage()
     parent.remove()
 }
