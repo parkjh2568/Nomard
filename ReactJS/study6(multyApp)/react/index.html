@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<body>
+    <div id="root"></div>
+</body>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root")
+    function App() {
+        const [index, setIndex] = React.useState("0");
+        const onSelect = (event)=>{
+            const value = event.target.value;
+            setIndex(value)
+        }
+        //jsx에서 아래와같이 의문문사용
+        return (<div>
+            <h1 className="hi">Super Converter</h1>
+            <select value={index} onChange={onSelect}>
+                <option value="0">Minutes & Hours</option>
+                <option value="1">Km & Miles</option>    
+            </select>
+            <hr/>
+            {index === "0" ? <MinuteHour /> : null }
+            {index === "1" ? <KilloMile /> : null }
+
+        </div>)
+    }
+    function MinuteHour() {
+        const [amount, setAmount] = React.useState(0)
+        const [flipped, setFlipped] = React.useState(false)
+        const onChange = (event)=>{
+            setAmount(event.target.value)
+        }
+        const clickReset = ()=>{
+            setAmount(0)
+        }
+        const clickFlip = ()=>{
+            clickReset();
+            setFlipped((current)=>!current)
+        }
+        return (<div>
+            <h3>Minute To Hour</h3>
+            <div>
+                <label htmlFor="ammount">Minutes </label>
+                <input id="ammount" placeholder="Minutes" type="number" value={flipped?  amount * 60 : amount} onChange={onChange} disabled={flipped}/>
+            </div>
+            <div>
+                <label htmlFor="hours">Hours </label>
+                <input id="hours" placeholder="Hours" type="number" value={flipped?  amount : Math.round(amount /60) } onChange={onChange} disabled={!flipped}/>
+            </div>
+            <div>
+                <button onClick={clickReset}>Reset</button>    
+                <button onClick={clickFlip}>Flip</button>    
+            </div>
+        </div>)
+    }
+    function KilloMile() {
+        const [amount, setAmount] = React.useState(0)
+        const [flipped, setFlipped] = React.useState(false)
+        const onChange = (event)=>{
+            console.log(event) //react가 발생시켜주는 event 내용 => event.nativeEvent
+            //event.target -> 해당 이벤트 발생한 html요소
+            setAmount(event.target.value)
+        }
+        const clickReset = ()=>{
+            setAmount(0)
+        }
+        const clickFlip = ()=>{
+            clickReset();
+            setFlipped((current)=>!current)
+        }
+        //jsx에서는 class = className, for => htmlFor 이라고 명시해서 써야함
+        return (<div>
+            <h3>Killo To Mile</h3>
+            <div>
+                <label htmlFor="ammount">Killo </label>
+                <input id="ammount" placeholder="Minutes" type="number" value={flipped?  amount / 0.6214 : amount} onChange={onChange} disabled={flipped}/>
+            </div>
+            <div>
+                <label htmlFor="hours">Mile </label>
+                <input id="hours" placeholder="Hours" type="number" value={flipped?  amount : amount * 0.6214 } onChange={onChange} disabled={!flipped}/>
+            </div>
+            <div>
+                <button onClick={clickReset}>Reset</button>    
+                <button onClick={clickFlip}>Flip</button>    
+            </div>
+        </div>)
+    }
+    
+    ReactDOM.render(<App />, root);
+</script>
+
+</html>

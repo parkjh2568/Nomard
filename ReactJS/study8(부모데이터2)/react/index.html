@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<body>
+    <div id="root"></div>
+</body>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    //props는 우리가 보내는 인자가 가지는 유일한 인자
+    //여기에 테그에서 설정한 모든 변수들이 이 오브젝트에 다 담겨있다.
+    function Btn(props){
+        return <button
+        style={{
+            backgroundColor: "tomato",
+            color:"white",
+            padding:"10px 20px",
+            border:0,
+            borderRadius: 10,
+            fontSize: props.big ? 18: 10
+        }}
+        >{props.muyaho}</button>
+    }
+    //props 오브젝트를 아래와같이 분해할당해서 받기도 가능
+    function Text({muyaho, munana, big}){
+        return <button
+        style={{
+            backgroundColor: "tomato",
+            color:"white",
+            padding:"10px 20px",
+            border:0,
+            borderRadius: 10,
+            fontSize: big ? 50: 30
+        }}
+        >{muyaho}</button>
+    }
+    function App() {
+        return (<div>
+            <Btn muyaho="Save Change" munana={false} big={true}/>
+            <Btn muyaho="Continue" muhaha={true} big={false}/>
+            <Text muyaho="Muyaho~"/>
+        </div>)
+    }
+    const root = document.getElementById("root")
+    ReactDOM.render(<App />, root);
+</script>
+
+</html>

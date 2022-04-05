@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<body>
+    <div id="root"></div>
+</body>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root")
+            //const [1,2] 방식으로 데이터를 받으면 = 뒤에 있는 배열을 분해할당
+        //ex) const [a,b] = ["tomato", "apple"]
+    function App() {
+        const [count, setCount] = React.useState(0); //html 컴포넌트에 사용할 변수 선언
+        console.log(count, setCount)
+        const onClick = ()=>{
+            setCount((current)=>count + 1)
+            // setCount(count + 1)
+        }
+        return (<div>
+            <h3>Total clicks: {count}</h3>
+            <button onClick={onClick}>Click me</button>
+        </div>)
+    }
+
+    ReactDOM.render(<App />, root);
+</script>
+
+</html>

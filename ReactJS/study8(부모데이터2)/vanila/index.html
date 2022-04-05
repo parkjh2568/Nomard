@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<body>
+    <span>Total clicks: 0</span>
+    <button id="btn">Click me</button>
+</body>
+<script>
+    let counter = 0;
+    const span = document.querySelector("span")
+    const button = document.querySelector("#btn")
+    button.addEventListener("click",()=>{
+        console.log("Muyaho~")
+        counter++;
+        span.innerText=`Total clicks: ${counter}`
+    })
+</script>
+</html>

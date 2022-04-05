@@ -16,9 +16,10 @@
     function render(){
         ReactDOM.render(<Container/>, root);
     }
+    //변수연결은 로 jsx안에 그대로 써줌{} 함수도 마찬가지-
     const Container = ()=> (
         <div>
-            <h3>Total clicks: {counter}</h3>
+            <h3>Total clicks: {counter}</h3> 
             <button onClick={countUp}>Click me</button>
         </div>)//추가 컴포넌트의 첫번째글자는 무조건 대문자로 아니면 html 테그라고 인식
         render()
