@@ -6,28 +6,37 @@
 <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<!-- PropType사용 -->
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
 <script type="text/babel">
-    function Btn({muyaho, onClick}){
+    function Btn({muyaho, fontSize, muzaho}){
         console.log(`Rendering ${muyaho}`)
         return <button
-        onClick={onClick}
         style={{
             backgroundColor: "tomato",
             color:"white",
             padding:"10px 20px",
             border:0,
             borderRadius: 10,
+            fontSize,
         }}
-        >{muyaho}</button>
+        >{muyaho}{muzaho}</button>
     }
-    const MemorizedBtn = React.memo(Btn) //특정 템플릿이 값이 변화하는데 다시 빌드되는걸 막음(변화요소만 타겟으로 변화시킬수있음)
+    //PropType 명령어로 어떤 변수모델이 있는지 확인가능
+    //이를통해 템플릿 함수에 어떤 타입의 옵션이 들어가야하는지 정의가능
+    //isRequired는 필수 태그라는뜻
+    Btn.propTypes={
+        muyaho: PropTypes.string.isRequired,
+        fontSize: PropTypes.number.isRequired,
+        muzaho: PropTypes.string,
+    }
 
     function App() {
-        const [value, setValue] = React.useState("Save Chantes");
-        const changeValue = ()=>setValue("Revert Changes")
         return (<div>
-            <MemorizedBtn muyaho={value} onClick={changeValue}/>
-            <MemorizedBtn muyaho="Continue"/>
+            <Btn  muzaho="number2"  fontSize={20} muyaho="Continue"/>
+            <Btn  fontSize={30} muyaho="응애에여"/>
+            <Btn  muyaho="폰트사이즈없음"/>
         </div>)
     }
     const root = document.getElementById("root")
