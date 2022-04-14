@@ -1,0 +1,47 @@
+{
+  "name": "electronservertest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.js",
+    "electron-builder": "electron-builder"
+  },
+  "build": {
+    "asar": false,
+    "appId": "com.project",
+    "productName": "Project",
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "icon": "./resources/installer/Icon.ico"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "installerIcon": "resources/installer/Icon.ico",
+      "createDesktopShortcut": true
+    }
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3",
+    "koa": "^2.13.4"
+  },
+  "devDependencies": {
+    "concurrently": "^7.1.0",
+    "cross-env": "^7.0.3",
+    "electron": "^18.0.3",
+    "electron-builder": "^23.0.3",
+    "wait-on": "^6.0.1"
+  }
+}

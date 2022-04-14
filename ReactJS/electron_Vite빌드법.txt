@@ -1,0 +1,123 @@
+Vite 프로젝트 생성 (https://xshine.tistory.com/340)
+
+npm create vite@latest
+혹은
+#npm 6.x
+npm create vite@latest 프로젝트이름 --template react-ts  
+#npm 7+
+npm create vite@latest 프로젝트이름 -- --template react-ts   
+
+프로젝트위치에가서 electron + 종속성모듈 설치
+npm i -D concurrently cross-env electron electron-builder wait-on
+
+
+package.json에 build 속성 추가 (자세한내용은 : https://www.electron.build/configuration/configuration) 밑은 샘플
+
+"build": {
+"appId": "com.my-website.my-app",
+"productName": "MyApp",
+"copyright": "Copyright © 2019 JunHyun",
+"mac": {
+"category": "public.app-category.utilities"
+},
+"nsis": {
+"oneClick": false,
+"allowToChangeInstallationDirectory": true
+},
+"files": [
+"dist/**/*",
+"electron/**/*"
+],
+"directories": {
+"buildResources": "assets",
+"output": "dist_electron"
+}
+}
+
+
+packege.json script추가
+
+    "electron": "wait-on tcp:3000 && cross-env IS_DEV=true electron .",
+    "electron:pack": "electron-builder --dir",
+    "electron:dev": "concurrently -k \"cross-env BROWSER=none npm run dev\" \"npm run electron\"",
+    "electron:builder": "electron-builder",
+    "build:for:electron": "tsc --noEmit && cross-env ELECTRON=true vite build",
+    "app:build": "npm run build:for:electron && npm run electron:builder"
+
+packege.json main 속성 추가
+
+	  "main": "electron/electron.js",
+
+
+electron/electron.js 생성
+
+const path = require('path');
+const { app, BrowserWindow } = require('electron');
+const isDev = process.env.IS_DEV == "true" ? true : false;
+function createWindow() {
+// Create the browser window.
+const mainWindow = new BrowserWindow({
+width: 800,
+height: 600,
+webPreferences: {
+preload: path.join(__dirname, 'preload.js'),
+nodeIntegration: true,
+},
+});
+// and load the index.html of the app.
+// win.loadFile("index.html");
+mainWindow.loadURL(
+isDev
+? 'http://localhost:3000'
+: `file://${path.join(__dirname, '../dist/index.html')}`
+);
+// Open the DevTools.
+if (isDev) {
+mainWindow.webContents.openDevTools();
+}
+}
+// This method will be called when Electron has finished
+// initialization and is ready to create browser windows.
+// Some APIs can only be used after this event occurs.
+app.whenReady().then(() => {
+createWindow()
+app.on('activate', function () {
+// On macOS it's common to re-create a window in the app when the
+// dock icon is clicked and there are no other windows open.
+if (BrowserWindow.getAllWindows().length === 0) createWindow()
+})
+});
+// Quit when all windows are closed, except on macOS. There, it's common
+// for applications and their menu bar to stay active until the user quits
+// explicitly with Cmd + Q.
+app.on('window-all-closed', () => {
+if (process.platform !== 'darwin') {
+app.quit();
+}
+});
+
+
+electron/preload.js 생성
+
+// All of the Node.js APIs are available in the preload process.
+// It has the same sandbox as a Chrome extension.
+window.addEventListener('DOMContentLoaded', () => {
+    const replaceText = (selector, text) => {
+    const element = document.getElementById(selector)
+    if (element) element.innerText = text
+    }
+    for (const dependency of ['chrome', 'node', 'electron']) {
+    replaceText(`${dependency}-version`, process.versions[dependency])
+    }
+    })
+
+
+프로젝트 실행, 빌드
+# 개발 모드로 Electron 실행 $ -> 자동으로 실행
+npm run electron:dev 
+# Electron 앱 빌드 $ -> setup파일 생성
+npm run app:build
+
+
+
+

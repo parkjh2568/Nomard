@@ -20,17 +20,16 @@ function Example1() {
   useEffect(renderEvent, []) // 페이지 로딩시 단한번만 // property 바뀌어도 또 작업안함
   useEffect(()=>{console.log("║ keyword Change")}, [keyword]) //차음한번 로딩되고 keyword가 바뀔때만 반응해서 작업
   useEffect(()=>{console.log("║ count Change")}, [count]) //차음한번 로딩되고 count 바뀔때만 반응해서 작업
-  useEffect(()=>{console.log("║ keyword or count Change")}, [keyword, count]) //차음한번 로딩되고 count 바뀔때만 반응해서 작업
+  useEffect(()=>{console.log("║ keyword or count Change")}, [keyword, count]) //차음한번 로딩되고 keyword, count 바뀔때만 반응해서 작업
   useEffect(()=>{console.log("╚════First Rendering Page End  ════╝")}, []) // 페이지 로딩시 단한번만 // property 바뀌어도 또 작업안함
 
 
   return (
     <div>
+      <h1 className={styles.title}>Trainning 1</h1>
       <input value={keyword} onChange={onChange} type="text" placeholder="Search here..."/>
-      <h1 className={styles.title}>Welcome Back!</h1>
       <h2>{count}</h2>
-      <button onClick={onClick}>Click me!</button>
-      <Button text={"Hello"}/>
+      <Button onClick={onClick} text={"Click Me!"}/>
     </div>
   )
 }

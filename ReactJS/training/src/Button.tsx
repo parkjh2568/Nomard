@@ -1,28 +1,23 @@
 import Proptypes from "prop-types"
-import styled from "./button.module.css"
+import styled from "./Button.module.css"
 
 interface ButtonProps {
     text: string,
     fontSize?: number,
+    onClick ?: ()=> void,
 }
 
-function NomalButton({text} : ButtonProps){
+function NomalButton({text, fontSize, onClick} : ButtonProps){
     return (
-        <button className={styled.btn}>{text}</button>
+        <button className={styled.btn} style={{fontSize}} onClick={onClick}>{text}</button>
     )
 }
-
 NomalButton.propTypes = {
     text: Proptypes.string.isRequired,
     fontSize: Proptypes.number,
 }
 
-function UnNomalButton(){
-
-}
-
 
 export {
     NomalButton as Button,
-    UnNomalButton as UButton,
 }
